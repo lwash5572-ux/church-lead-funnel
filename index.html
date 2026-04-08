@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Church Liability Guide</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: #0047AB;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.preview {
+    background: #fafafa;
+    padding: 20px;
+    border-left: 5px solid #0047AB;
+    margin-bottom: 25px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.btn {
+    width: 100%;
+    background-color: #0047AB;
+    color: white;
+    padding: 15px;
+    border: none;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #002f73;
+}
+
+.success {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    background: #e6f0ff;
+    border: 1px solid #0047AB;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    color: #777;
+}
+</style>
+
+<script>
+function submitFormAndDownload(event) {
+    event.preventDefault();
+
+    const form = document.getElementById("leadForm");
+
+    fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            document.getElementById("successMessage").style.display = "block";
+            window.open("church-liability-guide.pdf", "_blank");
+            form.reset();
+        } else {
+            alert("Something went wrong. Please try again.");
+        }
+    })
+    .catch(error => {
+        alert("Error submitting form.");
+    });
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Free Church Liability Guide</h1>
+
+<p class="subtitle">
+Get your free guide + discover hidden risks that could cost your church thousands.
+</p>
+
+<div class="preview">
+<strong>Inside This Guide:</strong>
+<ul>
+<li>How to protect your church from injury claims</li>
+<li>Vendor insurance requirements</li>
+<li>Hidden liability risks most churches miss</li>
+<li>Simple steps to protect your ministry</li>
+</ul>
+</div>
+
+<form id="leadForm" action="https://formspree.io/f/xdapjale" method="POST" onsubmit="submitFormAndDownload(event)">
+
+<input type="text" name="name" placeholder="Your Name" required>
+
+<input type="email" name="email" placeholder="Your Email" required>
+
+<label style="font-size:14px;">
+<input type="checkbox" name="review" value="yes">
+Yes, I’d like a FREE church insurance policy review
+</label>
+
+<button type="submit" class="btn">
+Download Free Guide
+</button>
+
+</form>
+
+<div id="successMessage" class="success">
+🎉 Thank you! Your guide is downloading now.
+</div>
+
+<div class="footer">
+Provided by Poole & Jackson Insurance Agency<br>
+Southfield, Michigan | (248) 443-0000
+</div>
+
+</div>
+
+</body>
+</html>
